@@ -1,11 +1,10 @@
-﻿namespace CompositeDesignPattern
-{
-    public class Leaf : Component
-    {
-        public override string Operation() =>
-            "Leaf";
+﻿namespace CompositeDesignPattern;
 
-        public override bool IsComposite() =>
-            false;
-    }
+public class Leaf : Component
+{
+    public override string Operation() =>
+        "Leaf";
+
+    public override bool IsComposite() =>
+        false;
 }

@@ -1,30 +1,29 @@
-﻿namespace CompositeDesignPattern
+﻿namespace CompositeDesignPattern;
+
+public class Composite : Component
 {
-    public class Composite : Component
+    protected List<Component> _children = new List<Component>();
+
+    public override void Add(Component component) =>
+        _children.Add(component);
+
+    public override void Remove(Component component) =>
+        _children.Remove(component);
+
+    public override string Operation()
     {
-        protected List<Component> _children = new List<Component>();
+        int i = 0;
+        string result = "Branch(";
 
-        public override void Add(Component component) =>
-            _children.Add(component);
-
-        public override void Remove(Component component) =>
-            _children.Remove(component);
-
-        public override string Operation()
+        foreach (Component component in _children)
         {
-            int i = 0;
-            string result = "Branch(";
+            result += component.Operation();
+            if (i != _children.Count - 1)
+                result += "+";
 
-            foreach (Component component in _children)
-            {
-                result += component.Operation();
-                if (i != _children.Count - 1)
-                    result += "+";
-
-                i++;
-            }
-
-            return result + ")";
+            i++;
         }
+
+        return result + ")";
     }
 }
